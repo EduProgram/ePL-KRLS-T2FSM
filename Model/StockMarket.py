@@ -34,7 +34,7 @@ model = 'ePL-KRLS-T2FSM'
 """ Calculation stage """
 
 # Importing the data
-Data = pd.read_csv(r'/home/eduardo/Documentos/GitHub/ePL-KRLS-T2FSM/Datasets/TAIEX.csv', header=0) #Edu    
+Data = pd.read_csv(r'C:/Users/Eduardo/Documents/GitHub/ePL-KRLS-T2FSM/Datasets/TAIEX.csv', header=0) #Edu    
 
 # Convert the date to datetime64
 Data['Date'] = pd.to_datetime(Data['Date'], format='%Y-%m-%d')
@@ -139,4 +139,16 @@ plt.plot(Rules, color='blue')
 plt.suptitle('Predictions of ' + model) #Edu
 plt.ylabel('Number of Fuzzy Rules')
 plt.xlabel('Samples')
+plt.show()
+
+# Plotting the graphic with improved resolution (comment this part if no use)
+plt.figure(figsize=(19.20,10.80))
+plt.rc('font', size=30)
+plt.rc('axes', titlesize=30)
+plt.plot(y[-500:,], label='Actual Value', color='red')
+plt.plot(OutputTestDenormalized[-500:,], color='blue', label='ePL-KRLS-T2FSM_p3 \n ePL-KRLS-T2FSM_zl \n ePL-KRLS-T2FSM_ma \n ePL-KRLS-T2FSM_hy')
+plt.ylabel('Output')
+plt.xlabel('Samples')
+plt.legend(loc='upper right')
+plt.savefig(f'Graphics/Plots2.eps', format='eps', dpi=1200)
 plt.show()

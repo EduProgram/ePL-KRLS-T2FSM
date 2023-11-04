@@ -33,7 +33,7 @@ model = 'ePL-KRLS-T2FSM'
 """ Calculation stage """
 
 # Importing the data (change the path)
-Data = pd.read_excel (r'/home/eduardo/Documentos/GitHub/ePL-KRLS-T2FSM/Datasets/MackeyGlass.xlsx', header=None)
+Data = pd.read_excel (r'C:/Users/Eduardo/Documents/GitHub/ePL-KRLS-T2FSM/Datasets/MackeyGlass.xlsx', header=None)
 
 # Changing to matrix
 Data = Data.to_numpy()
@@ -46,7 +46,7 @@ x = x.flatten()
 a   = 10  # Initial value: 10
 b   = 0.1 # Initial value: 0.1
 c   = 0.2 # Initial value: 0.2
-tau = 500 # Initial value: 17
+tau = 1000 # Initial value: 17, 500, 1000
 
 # Setting the first value
 Y = x[0]
@@ -153,4 +153,16 @@ plt.suptitle('Predictions of ' + model)
 plt.title('Results with tau = ' + str(tau))
 plt.ylabel('Number of Fuzzy Rules')
 plt.xlabel('Samples')
+plt.show()
+
+# Plotting the graphic with improved resolution (comment this part if no use)
+plt.figure(figsize=(19.20,10.80))
+plt.rc('font', size=30)
+plt.rc('axes', titlesize=30)
+plt.plot(y[-500:,], label='Actual Value', color='red')
+plt.plot(OutputTestDenormalized[-500:,], color='blue', label='ePL-KRLS-FSM_r2')
+plt.ylabel('Output')
+plt.xlabel('Samples')
+plt.legend(loc='upper right')
+plt.savefig(f'Graphics/Plots2.eps', format='eps', dpi=1200)
 plt.show()

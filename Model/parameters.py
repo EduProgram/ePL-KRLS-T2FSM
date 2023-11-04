@@ -16,7 +16,7 @@ def models(model, X_train, y_train, X_test, y_test):
         " Metric definition "
     
         # Defining the measure
-        measure = 'zeng_li'
+        measure = 'ralescu2'
             # Options in State-of-the-art: 'ePL-KRLS', 'ePL-KRLS-DISCO'
             # Options in Similarity T1: 'pappis1', 'pappis2', 'pappis3', 'jaccard', 
                                       # 'dice', 'zwick', 'chen', 'vector'
@@ -44,8 +44,8 @@ def models(model, X_train, y_train, X_test, y_test):
             
     
         # Defining the membership function (if is Similarity or Distance metric)
-        mfA = 'gaussian_t2'
-        mfB = 'gaussian_t2'
+        mfA = 'gaussian_t1'
+        mfB = 'gaussian_t1'
             # Options in Membership Function T1: 'gaussian_t1', 'polling_t1', 'iaa_t1', 'discrete_t1'
             # Options in Membership Function T2: 'gaussian_t2', 'polling_t2', 'iaa_t2'
         
@@ -59,10 +59,10 @@ def models(model, X_train, y_train, X_test, y_test):
         " Model hyperparameters stage "
         
         # Setting the hyperparameters
-        alpha = 0.01 # MG: 0.001 ; ST: 0.01                                    Interval <= 1
-        beta = 0.1 # MG: 0.06 ; ST: 0.1                                        Interval = [0, 1]
-        lambda1 = 10**(-3) # MG: 10**(-7) ; ST 10**(-3)                        Interval <= 1
-        sigma = 0.5 # MG: 0.3 ; ST: 0.5                                        Interval = [0.2, 0.5]
+        alpha = 0.001 # MG: 0.001 ; ST: 0.01                                    Interval <= 1
+        beta = 0.06 # MG: 0.06 ; ST: 0.1                                        Interval = [0, 1]
+        lambda1 = 10**(-7) # MG: 10**(-7) ; ST 10**(-3)                        Interval <= 1
+        sigma = 0.3 # MG: 0.3 ; ST: 0.5                                        Interval = [0.2, 0.5]
         omega = 1 # MG: 1 ; ST: 1                                              Interval = 1
         e_utility = 0.05 # MG: 0.05 ; ST: 0.05                                 Interval = [0.03, 0.05]
         
@@ -75,7 +75,5 @@ def models(model, X_train, y_train, X_test, y_test):
         # Testing the model
         OutputTest = Model.Test(X_test, y_test, measure, mfA, mfB) #Edu
         
-        return OutputTest, Rules
-   
         return OutputTest, Rules
     
